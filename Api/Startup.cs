@@ -33,8 +33,8 @@ namespace Api
         {
             var connection = "Server=localhost;DataBase=ddd;Uid=root;Pwd=";
             services.AddDbContext<Context>(options => options.UseMySql(connection));
-            services.AddTransient<IPessoaRepository, PessoaRepository>();
-            services.AddTransient<IPessoaService, PessoaService>();
+            services.AddScoped<IPessoaRepository, PessoaRepository>();
+            services.AddScoped<IPessoaService, PessoaService>();
             services.AddAutoMapper(x => x.AddProfile(new ViewModelToModel()));
             services.AddCors();
             services.AddMvc();

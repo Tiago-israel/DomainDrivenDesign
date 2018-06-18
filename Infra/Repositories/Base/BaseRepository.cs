@@ -40,6 +40,7 @@ namespace Infra.Repositories.Base
         {
             var TEntitty = _dataContext.Find<TEntitty>(id);
             _dataContext.Remove<TEntitty>(TEntitty);
+            _dataContext.SaveChanges();
         }
 
         public IEnumerable<TEntitty>BucarTodos()

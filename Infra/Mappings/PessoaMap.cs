@@ -13,6 +13,7 @@ namespace Infra.Mappings
         {
             builder.Property(p => p.Id).ValueGeneratedOnAdd();
             builder.Property(p => p.Nome);
+            builder.Property(p => p.DataNascimento);
             builder.Property(p => p.Email);
             builder.Property(p => p.Senha);
             builder.ToTable("pessoa");

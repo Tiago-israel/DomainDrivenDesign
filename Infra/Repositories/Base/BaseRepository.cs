@@ -20,14 +20,14 @@ namespace Infra.Repositories.Base
         public T Salvar(T entity)
         {
             _dataContext.Add(entity);
-            _dataContext.SaveChanges();
+            this.Commit();
             return entity;
         }
 
         public T Atualizar(T entity)
         {
             _dataContext.Update(entity);
-            _dataContext.SaveChanges();
+            this.Commit();
             return entity;
         }
 
@@ -40,12 +40,17 @@ namespace Infra.Repositories.Base
         {
             var entity = _dataContext.Find<T>(id);
             _dataContext.Remove<T>(entity);
-            _dataContext.SaveChanges();
+            this.Commit();
         }
 
         public IEnumerable<T> BucarTodos()
         {
             return _dataContext.Set<T>();
+        }
+
+        public void Commit()
+        {
+            _dataContext.SaveChanges();
         }
     }
 }

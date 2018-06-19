@@ -12,5 +12,6 @@ namespace Infra.Interfaces.Base
         T BuscarPorId(Guid id);
         IEnumerable<T> BucarTodos();
         void Delete(Guid id);
+        void Commit();
     }
 }

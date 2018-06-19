@@ -11,11 +11,11 @@ namespace Infra.Mappings
     {
         public void Configure(EntityTypeBuilder<Pessoa> builder)
         {
-            builder.Property(p => p.Id).ValueGeneratedOnAdd();
-            builder.Property(p => p.Nome);
-            builder.Property(p => p.DataNascimento);
-            builder.Property(p => p.Email);
-            builder.Property(p => p.Senha);
+            builder.Property(p => p.Id).HasColumnName("ID").ValueGeneratedOnAdd();
+            builder.Property(p => p.Nome).HasMaxLength(255).HasColumnName("NOME").IsRequired(true);
+            builder.Property(p => p.DataNascimento).HasColumnName("DATA_NASCIMENTO").IsRequired(false);
+            builder.Property(p => p.Email).HasColumnName("EMAIL").HasMaxLength(255);
+            builder.Property(p => p.Senha).HasColumnName("SENHA").IsRequired(true);
             builder.ToTable("pessoa");
         }
     }

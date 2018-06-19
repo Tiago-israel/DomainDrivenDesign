@@ -5,12 +5,12 @@ using System.Text;
 
 namespace Infra.Interfaces.Base
 {
-    public interface IBaseRepository<TEntity> where TEntity : class
+    public interface IBaseRepository<T> where T : class
     {
-        TEntity Salvar(TEntity entity);
-        TEntity Atualizar(TEntity entity);
-        TEntity BuscarPorId(Guid id);
-        IEnumerable<TEntity> BucarTodos();
+        T Salvar(T entity);
+        T Atualizar(T entity);
+        T BuscarPorId(Guid id);
+        IEnumerable<T> BucarTodos();
         void Delete(Guid id);
     }
 }

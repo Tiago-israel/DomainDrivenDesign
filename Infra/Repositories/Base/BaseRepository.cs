@@ -9,7 +9,7 @@ using System.Text;
 
 namespace Infra.Repositories.Base
 {
-    public class BaseRepository<TEntitty> : IBaseRepository<TEntitty>  where TEntitty : class
+    public class BaseRepository<T> : IBaseRepository<T>  where T : class
     {
         private readonly Context _dataContext;
 
@@ -17,35 +17,35 @@ namespace Infra.Repositories.Base
             _dataContext = dataContext;
         }
         
-        public TEntitty Salvar(TEntitty entity)
+        public T Salvar(T entity)
         {
             _dataContext.Add(entity);
             _dataContext.SaveChanges();
             return entity;
         }
 
-        public TEntitty Atualizar(TEntitty TEntitty)
+        public T Atualizar(T entity)
         {
-            _dataContext.Update(TEntitty);
+            _dataContext.Update(entity);
             _dataContext.SaveChanges();
-            return TEntitty;
+            return entity;
         }
 
-        public TEntitty BuscarPorId(Guid id)
+        public T BuscarPorId(Guid id)
         {
-            return _dataContext.Find<TEntitty>(id);
+            return _dataContext.Find<T>(id);
         }
 
         public void Delete(Guid id)
         {
-            var TEntitty = _dataContext.Find<TEntitty>(id);
-            _dataContext.Remove<TEntitty>(TEntitty);
+            var entity = _dataContext.Find<T>(id);
+            _dataContext.Remove<T>(entity);
             _dataContext.SaveChanges();
         }
 
-        public IEnumerable<TEntitty>BucarTodos()
+        public IEnumerable<T> BucarTodos()
         {
-            return _dataContext.Set<TEntitty>();
+            return _dataContext.Set<T>();
         }
     }
 }

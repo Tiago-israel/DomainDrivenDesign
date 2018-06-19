@@ -9,6 +9,7 @@ using AutoMapper;
 using Infra.DataContext;
 using Infra.Interfaces.Base;
 using Infra.Repositories;
+using IoC;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -33,8 +34,9 @@ namespace Api
         {
             var connection = "Server=localhost;DataBase=ddd;Uid=root;Pwd=";
             services.AddDbContext<Context>(options => options.UseMySql(connection));
-            services.AddScoped<IPessoaRepository, PessoaRepository>();
-            services.AddScoped<IPessoaService, PessoaService>();
+
+            Injector.InjetarDependencias(services);
+
             services.AddAutoMapper(x => x.AddProfile(new ViewModelToModel()));
             services.AddCors();
             services.AddMvc();

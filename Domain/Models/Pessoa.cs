@@ -11,5 +11,14 @@ namespace Domain.Models
         public DateTime? DataNascimento { get; set; }
         public string Email { get; set; }
         public string Senha { get; set; }
+
+        public bool ValidarMaioridade()
+        {
+            if (DateTime.Now.Year - this.DataNascimento.GetValueOrDefault().Year < 18)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

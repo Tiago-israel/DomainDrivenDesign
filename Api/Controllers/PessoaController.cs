@@ -21,7 +21,6 @@ namespace Api.Controllers
             _pessoaService = pessoaService;
         }
 
-        // GET: api/Pessoa
         [HttpGet]
         public IActionResult BuscarTodos()
         {
@@ -29,8 +28,7 @@ namespace Api.Controllers
             return Ok(pessoas);
         }
 
-        // GET: api/Pessoa/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}")]
         public IActionResult BuscarPorId(Guid id)
         {
             var pessoa = _pessoaService.BuscarPorId(id);
@@ -41,7 +39,6 @@ namespace Api.Controllers
             return BadRequest();
         }
 
-        // POST: api/Pessoa
         [HttpPost]
         public IActionResult Salvar([FromBody]PessoaViewModel pessoaViewModel)
         {
@@ -53,7 +50,6 @@ namespace Api.Controllers
             return BadRequest();
         }
 
-        // PUT: api/Pessoa/5
         [HttpPut("{id}")]
         public IActionResult Atualizar(Guid id, [FromBody]PessoaViewModel pessoaViewModel)
         {
@@ -65,7 +61,6 @@ namespace Api.Controllers
             return BadRequest();
         }
 
-        // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
         public IActionResult Excluir(Guid id)
         {
